@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ET Ethiopian Shipping Business Inc.</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#087b36">
+<style>
+:root{
+  --green:#087b36; --dark:#073b1c; --gold:#f4c542; --bg:#f5f7f4; --card:#fff; --text:#1f2937; --muted:#6b7280; --danger:#b91c1c; --blue:#1d4ed8;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
+header{background:linear-gradient(135deg,var(--dark),var(--green));color:white;padding:28px 16px;text-align:center}
+header h1{margin:0;font-size:30px} header p{margin:8px 0 0;color:#eaf7ec}
+.container{max-width:1100px;margin:20px auto;padding:0 14px}
+.card{background:var(--card);border-radius:14px;padding:20px;margin:16px 0;box-shadow:0 3px 14px rgba(0,0,0,.08);border:1px solid #e5e7eb}
+.nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+button{background:var(--green);color:white;border:0;border-radius:9px;padding:10px 14px;margin:4px;cursor:pointer;font-weight:600}
+button:hover{filter:brightness(.92)} .btn-secondary{background:#374151}.btn-danger{background:var(--danger)}.btn-pay{background:var(--blue)}.btn-light{background:white;color:var(--green);border:1px solid #d1fae5}.btn-gold{background:var(--gold);color:#1f2937}
+input,select,textarea{width:280px;max-width:95%;padding:10px;margin:6px;border:1px solid #cbd5e1;border-radius:8px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.stat{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px;text-align:center}.stat strong{font-size:26px;color:var(--green)}
+.hidden{display:none}.small{color:var(--muted);font-size:14px}.section-title{color:var(--dark);margin-bottom:8px}.item{background:#fafafa;border:1px solid #e5e7eb;border-radius:10px;padding:14px;margin:10px 0;text-align:left}.badge{display:inline-block;border-radius:999px;background:#dcfce7;color:#166534;padding:4px 9px;font-size:13px;font-weight:bold}.badge-warn{background:#fef3c7;color:#92400e}.badge-paid{background:#dbeafe;color:#1e40af}.lang{margin-top:14px}.lang button{background:white;color:var(--green);border:1px solid #bbf7d0}.two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}hr{border:0;border-top:1px solid #e5e7eb;margin:18px 0}.receipt-note{font-size:13px;color:#555}.footer{text-align:center;color:#6b7280;padding:20px}ol{text-align:left;max-width:680px;margin:10px auto}.admin-only{border-left:4px solid var(--gold)}.notice{background:#ecfeff;border:1px solid #a5f3fc;border-radius:12px;padding:12px;margin:10px 0}.progressbar{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden}.progressbar span{display:block;height:100%;background:var(--green)}
+@media(max-width:650px){header h1{font-size:23px}button{width:95%;margin:4px auto}input,select,textarea{width:95%}.nav{display:block}.card{padding:14px}}
+</style>
+</head>
+<body>
+<header>
+  <h1 id="appTitle" data-i18n="appTitle">ET Ethiopian Shipping Business Inc.</h1>
+  <p data-i18n="tagline">Trusted package delivery between Atlanta and Ethiopia</p>
+  <div class="lang"><span data-i18n="language">🌐 Language:</span> <button onclick="setLanguage('en')">English</button><button onclick="setLanguage('am')">አማርኛ</button></div>
+  <div class="nav">
+    <button onclick="scrollToId('home')" data-i18n="home">Home</button>
+    <button onclick="scrollToId('account')" data-i18n="account">My Account</button>
+    <button onclick="showSenderDashboard()" data-i18n="senderDash">Sender Dashboard</button>
+    <button onclick="showTravelerDashboard()" data-i18n="travelerDash">Traveler Dashboard</button>
+    <button onclick="scrollToId('sendPackage')" data-i18n="sendPackage">Send Package</button>
+    <button onclick="scrollToId('travelerRegister')" data-i18n="travelerRegistration">Traveler Registration</button>
+    <button onclick="scrollToId('track')" data-i18n="trackPackage">Track Package</button>
+    <button onclick="showAdminDashboard()" data-i18n="adminDash">Admin Dashboard</button>
+  </div>
+</header>
+
+<main class="container" id="home">
+  <section class="card">
+    <h2 class="section-title" data-i18n="welcome">Welcome</h2>
+    <p id="mainWelcome" data-i18n="guestWelcome">Welcome Guest</p>
+    <div class="grid">
+      <div class="stat"><span data-i18n="safe">Secure community service</span><strong>✓</strong></div>
+      <div class="stat"><span data-i18n="tracking">Package tracking</span><strong>ET</strong></div>
+      <div class="stat"><span data-i18n="paymentReady">Payment ready</span><strong>$</strong></div>
+    </div>
+  </section>
+
+  <section class="card" id="account">
+    <h2 data-i18n="account">My Account</h2>
+    <div class="two-col">
+      <div>
+        <h3 data-i18n="createAccount">Create Account</h3>
+        <input id="fullName" data-i18n-placeholder="fullName" placeholder="Full Name" type="text"><br>
+        <input id="phone" data-i18n-placeholder="phone" placeholder="Phone Number" type="tel" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')"><br>
+        <input id="email" data-i18n-placeholder="email" placeholder="Email" type="email"><br>
+        <input id="password" data-i18n-placeholder="passwordCreate" placeholder="Create Password" type="password"><br>
+        <select id="userRole">
+          <option value="sender" data-i18n="sender">Sender</option>
+          <option value="traveler" data-i18n="traveler">Traveler</option>
+          <option value="both" data-i18n="both">Both Sender & Traveler</option>
+        </select><br>
+        <button onclick="createAccount()" data-i18n="createAccount">Create Account</button>
+      </div>
+      <div>
+        <h3 data-i18n="login">Login</h3>
+        <input id="loginEmail" data-i18n-placeholder="phoneOrEmail" placeholder="Phone or Email" type="text"><br>
+        <input id="loginPassword" data-i18n-placeholder="password" placeholder="Password" type="password"><br>
+        <button onclick="loginUser()" data-i18n="login">Login</button>
+        <button class="btn-secondary" onclick="logoutUser()" data-i18n="logout">Logout</button>
+        <p class="small">Admin: admin@etshipping.com / admin123</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" id="profile">
+    <h2 data-i18n="profile">My Profile</h2>
+    <p><b data-i18n="name">Name:</b> <span id="profileName">Not logged in</span></p>
+    <p><b data-i18n="status">Status:</b> <span id="profileStatus">Guest</span></p>
+    <p><b data-i18n="role">Role:</b> <span id="profileRole">Guest</span></p>
+    <button onclick="showProfile()" data-i18n="showProfile">Show My Profile</button>
+  </section>
+
+  <section class="card" id="dashboards">
+    <h2 data-i18n="dashboardCenter">Dashboard Center</h2>
+    <p data-i18n="dashboardHelp">Your dashboard depends on whether you are a sender, traveler, both, or admin.</p>
+    <button onclick="showSenderDashboard()" data-i18n="senderDash">Sender Dashboard</button>
+    <button onclick="showTravelerDashboard()" data-i18n="travelerDash">Traveler Dashboard</button>
+    <div id="senderDashboard" class="hidden"></div>
+    <div id="travelerDashboard" class="hidden"></div>
+  </section>
+
+  <section class="card" id="sendPackage">
+    <h2 data-i18n="sendPackage">Send Package</h2>
+    <div id="selectedTravelerBox" class="item hidden"></div>
+    <input id="senderName" data-i18n-placeholder="senderName" placeholder="Sender Name" type="text"><br>
+    <input id="senderPhone" data-i18n-placeholder="senderPhone" placeholder="Sender Phone" type="tel"><br>
+    <input id="receiverName" data-i18n-placeholder="receiverName" placeholder="Receiver Name" type="text"><br>
+    <input id="receiverPhone" data-i18n-placeholder="receiverPhone" placeholder="Receiver Phone" type="tel"><br>
+    <input id="destinationCity" data-i18n-placeholder="destinationCity" placeholder="City in Ethiopia" type="text"><br>
+    <input id="packageWeight" data-i18n-placeholder="packageWeight" placeholder="Package Weight (lbs)" type="number"><br>
+    <input id="packageDescription" data-i18n-placeholder="packageDescription" placeholder="Package Description" type="text"><br>
+    <button onclick="submitShipment()" data-i18n="submitShipment">Submit Shipment Request</button>
+    <p class="small" data-i18n="priceRule">1–25 lbs = $9/lb. 26–50 lbs = $400 flat.</p>
+  </section>
+
+  <section class="card" id="myShipments">
+    <h2 data-i18n="myShipments">My Shipments</h2>
+    <div id="myShipmentsList"></div>
+  </section>
+
+
+
+  <section class="card" id="businessTools">
+    <h2>Business Tools</h2>
+    <p class="small">GitHub-ready prototype with backup, payment placeholder, delivery workflow, receipts, and admin controls.</p>
+    <button onclick="exportBackup()">⬇️ Export App Data Backup</button>
+    <input id="importBackupFile" type="file" accept="application/json" onchange="importBackup(event)">
+    <button onclick="seedDemoData()" class="btn-gold">Create Demo Data</button>
+    <div class="notice"><b>Production note:</b> Firebase and Stripe files are included, but you must add your own private keys before real customers use payments or cloud database.</div>
+  </section>
+
+  <section class="card" id="track">
+    <h2 data-i18n="trackPackage">Track Package</h2>
+    <input id="trackingInput" data-i18n-placeholder="trackingNumber" placeholder="Enter Tracking Number" type="text">
+    <button onclick="trackPackage()" data-i18n="trackPackage">Track Package</button>
+  </section>
+
+  <section class="card" id="travelerRegister">
+    <h2 data-i18n="travelerRegistration">Traveler Registration</h2>
+    <input id="travelerNameInput" data-i18n-placeholder="travelerName" placeholder="Traveler Full Name" type="text"><br>
+    <input id="travelerPhoneInput" data-i18n-placeholder="travelerPhone" placeholder="Traveler Phone" type="tel"><br>
+    <select id="travelerDestinationInput"><option>Atlanta → Addis Ababa</option><option>Addis Ababa → Atlanta</option></select><br>
+    <input id="travelerDateInput" type="date"><br>
+    <input id="travelerAirlineInput" data-i18n-placeholder="airline" placeholder="Airline" type="text"><br>
+    <input id="travelerDepartureInput" data-i18n-placeholder="departureCity" placeholder="Departure City" type="text"><br>
+    <input id="travelerArrivalInput" data-i18n-placeholder="arrivalCity" placeholder="Arrival City" type="text"><br>
+    <input id="travelerWeightInput" data-i18n-placeholder="availableLuggage" placeholder="Available Luggage Space (lbs)" type="number"><br>
+    <button onclick="registerTraveler()" data-i18n="registerTraveler">Register Traveler</button>
+  </section>
+
+  <section class="card" id="travelers">
+    <h2 data-i18n="availableTravelers">Available Travelers</h2>
+    <div id="availableTravelersList"></div>
+  </section>
+
+  <section class="card admin-only" id="admin">
+    <h2 data-i18n="adminDash">Admin Dashboard</h2>
+    <div id="adminDashboardInfo"><p class="small" data-i18n="adminLoginHint">Login as admin to view the dashboard.</p></div>
+    <div class="grid" id="adminStats"></div>
+    <h3 data-i18n="registeredUsers">Registered Users</h3><div id="usersList"></div>
+    <h3 data-i18n="allTravelers">All Travelers</h3><div id="adminTravelersList"></div>
+    <h3 data-i18n="allShipments">All Shipments</h3><div id="adminShipmentsList"></div>
+    <button class="btn-danger" onclick="clearAllTestData()" data-i18n="clearTestData">Clear All Test Data</button>
+  </section>
+
+  <section class="card">
+    <h3 data-i18n="contactUs">Contact Us</h3>
+    <p>Clarkston, Georgia<br>Phone: (404) 000-0000<br>Email: info@ethiopianshippingapp.com</p>
+  </section>
+</main>
+<div class="footer">ET Ethiopian Shipping Business Inc. — Prototype Version 5.3</div>
+
+<script>
+const ADMIN_EMAIL='admin@etshipping.com'; const ADMIN_PASSWORD='admin123';
+const translations={
+ en:{appTitle:'ET Ethiopian Shipping Business Inc.',tagline:'Trusted package delivery between Atlanta and Ethiopia',language:'🌐 Language:',home:'Home',account:'My Account',senderDash:'Sender Dashboard',travelerDash:'Traveler Dashboard',sendPackage:'Send Package',travelerRegistration:'Traveler Registration',trackPackage:'Track Package',adminDash:'Admin Dashboard',welcome:'Welcome',guestWelcome:'Welcome Guest',safe:'Secure community service',tracking:'Package tracking',paymentReady:'Payment ready',createAccount:'Create Account',fullName:'Full Name',phone:'Phone Number',email:'Email',passwordCreate:'Create Password',sender:'Sender',traveler:'Traveler',both:'Both Sender & Traveler',login:'Login',phoneOrEmail:'Phone or Email',password:'Password',logout:'Logout',profile:'My Profile',name:'Name:',status:'Status:',role:'Role:',showProfile:'Show My Profile',dashboardCenter:'Dashboard Center',dashboardHelp:'Your dashboard depends on whether you are a sender, traveler, both, or admin.',senderName:'Sender Name',senderPhone:'Sender Phone',receiverName:'Receiver Name',receiverPhone:'Receiver Phone',destinationCity:'City in Ethiopia',packageWeight:'Package Weight (lbs)',packageDescription:'Package Description',submitShipment:'Submit Shipment Request',priceRule:'1–25 lbs = $9/lb. 26–50 lbs = $400 flat.',myShipments:'My Shipments',trackingNumber:'Enter Tracking Number',travelerName:'Traveler Full Name',travelerPhone:'Traveler Phone',airline:'Airline',departureCity:'Departure City',arrivalCity:'Arrival City',availableLuggage:'Available Luggage Space (lbs)',registerTraveler:'Register Traveler',availableTravelers:'Available Travelers',adminLoginHint:'Login as admin to view the dashboard.',registeredUsers:'Registered Users',allTravelers:'All Travelers',allShipments:'All Shipments',clearTestData:'Clear All Test Data',contactUs:'Contact Us',paidShipments:'Paid Shipments',totalRevenue:'Total Revenue',totalUsers:'Total Users',totalTravelers:'Total Travelers',totalShipments:'Total Shipments',matchedShipments:'Matched Shipments',printReceipt:'Print Receipt',payNow:'Pay Now',markPaid:'Mark Paid',travelerCommission:'Traveler Commission',delete:'Delete',pickedUp:'Picked Up',inTransit:'In Transit',arrived:'Arrived in Addis Ababa',delivered:'Delivered'},
+ am:{appTitle:'የኢትዮጵያ ጭነት መላኪያ ቢዝነስ',tagline:'ከአትላንታ ወደ ኢትዮጵያ የታመነ ጥቅል ማድረስ',language:'🌐 ቋንቋ:',home:'መነሻ',account:'የእኔ መለያ',senderDash:'የላኪ መቆጣጠሪያ',travelerDash:'የተጓዥ መቆጣጠሪያ',sendPackage:'ጥቅል ላክ',travelerRegistration:'የተጓዥ ምዝገባ',trackPackage:'ጥቅል ተከታተል',adminDash:'የአስተዳዳሪ መቆጣጠሪያ',welcome:'እንኳን ደህና መጡ',guestWelcome:'እንኳን ደህና መጡ እንግዳ',safe:'የታመነ የማህበረሰብ አገልግሎት',tracking:'የጥቅል መከታተያ',paymentReady:'ክፍያ ዝግጁ',createAccount:'መለያ ፍጠር',fullName:'ሙሉ ስም',phone:'ስልክ ቁጥር',email:'ኢሜይል',passwordCreate:'የይለፍ ቃል ፍጠር',sender:'ላኪ',traveler:'ተጓዥ',both:'ላኪና ተጓዥ',login:'ግባ',phoneOrEmail:'ስልክ ወይም ኢሜይል',password:'የይለፍ ቃል',logout:'ውጣ',profile:'የእኔ መረጃ',name:'ስም:',status:'ሁኔታ:',role:'ሚና:',showProfile:'መረጃዬን አሳይ',dashboardCenter:'የመቆጣጠሪያ ማዕከል',dashboardHelp:'ከገቡ በኋላ መቆጣጠሪያዎ በሚናዎ ይታያል።',senderName:'የላኪ ስም',senderPhone:'የላኪ ስልክ',receiverName:'የተቀባይ ስም',receiverPhone:'የተቀባይ ስልክ',destinationCity:'በኢትዮጵያ ከተማ',packageWeight:'የጥቅል ክብደት (ፓውንድ)',packageDescription:'የጥቅል መግለጫ',submitShipment:'የጥቅል ጥያቄ አስገባ',priceRule:'1–25 ፓውንድ = $9/ፓውንድ። 26–50 ፓውንድ = $400።',myShipments:'የእኔ ጥቅሎች',trackingNumber:'መከታተያ ቁጥር ያስገቡ',travelerName:'የተጓዥ ሙሉ ስም',travelerPhone:'የተጓዥ ስልክ',airline:'አየር መንገድ',departureCity:'መነሻ ከተማ',arrivalCity:'መድረሻ ከተማ',availableLuggage:'ያለ የሻንጣ ቦታ (ፓውንድ)',registerTraveler:'ተጓዥ መዝግብ',availableTravelers:'ያሉ ተጓዦች',adminLoginHint:'መቆጣጠሪያውን ለማየት እንደ አስተዳዳሪ ይግቡ።',registeredUsers:'የተመዘገቡ ተጠቃሚዎች',allTravelers:'ሁሉም ተጓዦች',allShipments:'ሁሉም ጥቅሎች',clearTestData:'ሁሉንም የሙከራ መረጃ ሰርዝ',contactUs:'ያግኙን',paidShipments:'የተከፈሉ ጥቅሎች',totalRevenue:'ጠቅላላ ገቢ',totalUsers:'ጠቅላላ ተጠቃሚዎች',totalTravelers:'ጠቅላላ ተጓዦች',totalShipments:'ጠቅላላ ጥቅሎች',matchedShipments:'የተመደቡ ጥቅሎች',printReceipt:'ደረሰኝ አትም',payNow:'አሁን ክፈል',markPaid:'እንደተከፈለ ምልክት',travelerCommission:'የተጓዥ ኮሚሽን',delete:'ሰርዝ',pickedUp:'ተወስዷል',inTransit:'በመንገድ ላይ',arrived:'አዲስ አበባ ደርሷል',delivered:'ተደርሷል'}
+};
+function t(k){let lang=localStorage.getItem('language')||'en';return (translations[lang]&&translations[lang][k])||translations.en[k]||k}
+function setLanguage(lang){localStorage.setItem('language',lang);document.documentElement.lang=lang==='am'?'am':'en';document.querySelectorAll('[data-i18n]').forEach(el=>{el.textContent=t(el.dataset.i18n)});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{el.placeholder=t(el.dataset.i18nPlaceholder)});renderAll();}
+function scrollToId(id){document.getElementById(id)?.scrollIntoView({behavior:'smooth'});}
+function getUsers(){return JSON.parse(localStorage.getItem('users')||'[]')} function saveUsers(v){localStorage.setItem('users',JSON.stringify(v))}
+function getShipments(){return JSON.parse(localStorage.getItem('shipments')||'[]')} function saveShipments(v){localStorage.setItem('shipments',JSON.stringify(v))}
+function getTravelers(){return JSON.parse(localStorage.getItem('travelers')||'[]')} function saveTravelers(v){localStorage.setItem('travelers',JSON.stringify(v))}
+function getCurrentUser(){return JSON.parse(localStorage.getItem('currentUser')||'null')}
+function getRole(user){
+  let role=(user && user.role ? String(user.role) : '').toLowerCase().trim();
+  if(role.includes('both')) return 'both';
+  if(role.includes('travel')) return 'traveler';
+  if(role.includes('sender')) return 'sender';
+  if(role.includes('admin')) return 'admin';
+  return role;
+}
+function money(n){return Number(n||0).toFixed(2).replace('.00','')}
+function calculatePrice(weight){weight=Number(weight);if(!weight||weight<=0)return 0;return weight<=25?weight*9:400;}
+function calculateTravelerCommission(weight){
+  weight = Number(weight);
+  if(!weight || weight <= 0) return 0;
+  return weight * 2;
+}
+function roleText(role){role=getRole({role}); return role==='both'?t('both'):role==='traveler'?t('traveler'):role==='admin'?'Admin':t('sender')}
+function createAccount(){let user={name:fullName.value.trim(),phone:phone.value.trim(),email:email.value.trim().toLowerCase(),password:password.value,role:userRole.value,status:'Active User'};if(!user.name||!user.phone||!user.email||!user.password){alert('Please fill all fields.');return}if(!/^[A-Za-z ]+$/.test(user.name)){alert('Please enter a valid full name.');return}if(!/^[0-9]{10}$/.test(user.phone)){alert('Phone number must be 10 digits.');return}if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email)){alert('Please enter a valid email.');return}if(user.password.length<6){alert('Password must be at least 6 characters.');return}let users=getUsers();if(users.some(u=>u.email===user.email)){alert('This email is already registered.');return}if(users.some(u=>u.phone===user.phone)){alert('This phone number is already registered.');return}users.push(user);saveUsers(users);localStorage.setItem('currentUser',JSON.stringify(user));alert('Account created successfully!');renderAll();}
+function loginUser(){let e=loginEmail.value.trim().toLowerCase(),p=loginPassword.value;if(e===ADMIN_EMAIL&&p===ADMIN_PASSWORD){localStorage.setItem('currentUser',JSON.stringify({name:'Administrator',email:ADMIN_EMAIL,role:'admin',status:'Administrator'}));alert('Admin Login Successful!');renderAll();showAdminDashboard();return}let user=getUsers().find(u=>(u.email===e||u.phone===e)&&u.password===p);if(!user){alert('Invalid email/phone or password.');return}localStorage.setItem('currentUser',JSON.stringify(user));alert('Login Successful!');renderAll();if(getRole(user)==='traveler')showTravelerDashboard();else showSenderDashboard();}
+function logoutUser(){localStorage.removeItem('currentUser');renderAll();alert('Logged out successfully!')}
+function showProfile(){let u=getCurrentUser();profileName.textContent=u?u.name:'Not logged in';profileStatus.textContent=u?u.status:'Guest';profileRole.textContent=u?roleText(u.role):'Guest';mainWelcome.textContent=u?'Welcome '+u.name:t('guestWelcome');}
+function canSender(){let u=getCurrentUser();return u&&(getRole(u)==='sender'||getRole(u)==='both')}
+function canTraveler(){let u=getCurrentUser();return u&&(getRole(u)==='traveler'||getRole(u)==='both')}
+function submitShipment(){
+let u=getCurrentUser();
+if(!u||getRole(u)==='admin'){alert('Please login as a sender/customer first.');return}
+if(!(getRole(u)==='sender'||getRole(u)==='both')){alert('This account is not a sender account.');return}
+let selectedTravelerId=localStorage.getItem('selectedTravelerId');
+if(!selectedTravelerId){alert('Please pick a traveler first from Available Travelers.');scrollToId('travelers');return}
+let travelers=getTravelers();
+let traveler=travelers.find(tr=>tr.id===selectedTravelerId);
+if(!traveler){alert('Selected traveler was not found. Please pick a traveler again.');localStorage.removeItem('selectedTravelerId');renderSelectedTraveler();scrollToId('travelers');return}
+let weight=Number(packageWeight.value);
+if(weight>Number(traveler.weight)){alert('This package is heavier than the traveler remaining space. Remaining space: '+traveler.weight+' lbs');return}
+let shipment={trackingNumber:'ET'+Date.now(),sender:senderName.value.trim(),senderPhone:senderPhone.value.trim(),receiver:receiverName.value.trim(),receiverPhone:receiverPhone.value.trim(),city:destinationCity.value.trim(),weight,description:packageDescription.value.trim(),owner:u.email,traveler:traveler.name,travelerId:traveler.id,travelerEmail:traveler.owner||'',status:'Pending Traveler Approval',date:new Date().toLocaleDateString(),price:calculatePrice(weight),paymentStatus:'Pending'};
+if(!shipment.sender||!shipment.receiver||!shipment.city||!shipment.weight||!shipment.description){alert('Please complete the shipment form.');return}
+let shipments=getShipments();
+shipments.push(shipment);
+saveShipments(shipments);
+localStorage.removeItem('selectedTravelerId');
+renderSelectedTraveler();
+alert('Shipment request sent to '+traveler.name+'! Tracking Number: '+shipment.trackingNumber+' Price: $'+shipment.price+'\n\nThe traveler must accept before space is deducted.');
+renderAll();
+scrollToId('myShipments')}
+function registerTraveler(){let u=getCurrentUser();if(!u||getRole(u)==='admin'){alert('Please login as a traveler first.');return}if(!(getRole(u)==='traveler'||getRole(u)==='both')){alert('This account is not a traveler account.');return}let traveler={id:'TR'+Date.now(),owner:u.email,name:travelerNameInput.value.trim(),phone:travelerPhoneInput.value.trim(),destination:travelerDestinationInput.value,date:travelerDateInput.value,airline:travelerAirlineInput.value.trim(),departure:travelerDepartureInput.value.trim(),arrival:travelerArrivalInput.value.trim(),weight:Number(travelerWeightInput.value),originalWeight:Number(travelerWeightInput.value)};if(!traveler.name||!traveler.phone||!traveler.weight){alert('Please fill traveler name, phone, and luggage space.');return}let list=getTravelers();list.push(traveler);saveTravelers(list);alert('Traveler registered successfully!');renderAll();showTravelerDashboard()}
+function renderShipments(){let u=getCurrentUser();myShipmentsList.innerHTML='';if(!u){myShipmentsList.innerHTML='<p class="small">Login to see your shipments.</p>';return}let shipments=getShipments().filter(s=>s.owner===u.email);if(!shipments.length){myShipmentsList.innerHTML='<p class="small">No shipments yet.</p>';return}shipments.forEach(s=>{myShipmentsList.innerHTML+=shipmentCard(s,true)});}
+function shipmentCard(s,ownerView){
+let paymentButton = s.paymentStatus === 'Paid'
+    ? `<span class="badge badge-paid">Paid</span>`
+    : `<button class="btn-pay" onclick="payShipment('${s.trackingNumber}')">💳 ${t('payNow')}</button>`;
+return `<div class="item"><b>Tracking:</b> ${s.trackingNumber}<br><b>Sender:</b> ${s.sender}<br><b>Receiver:</b> ${s.receiver}<br><b>Traveler:</b> ${s.traveler}<br><b>Destination:</b> ${s.city}<br><b>Package:</b> ${s.description}<br><b>Weight:</b> ${s.weight} lbs<br><b>Price:</b> $${money(s.price)}<br><b>Payment:</b> <span class="badge ${s.paymentStatus==='Paid'?'badge-paid':'badge-warn'}">${s.paymentStatus}</span><br><b>Status:</b> ${s.status}<br><b>Date:</b> ${s.date}<br>${paymentButton}</div>`}
+
+function pickTraveler(id){
+let tr=getTravelers().find(t=>t.id===id);
+if(!tr){alert('Traveler not found.');return}
+if(Number(tr.weight)<=0){alert('This traveler is full.');return}
+localStorage.setItem('selectedTravelerId',id);
+renderSelectedTraveler();
+scrollToId('sendPackage');
+alert('Traveler selected: '+tr.name+'. Now complete the package form.');
+}
+function renderSelectedTraveler(){
+let box=document.getElementById('selectedTravelerBox');
+if(!box)return;
+let id=localStorage.getItem('selectedTravelerId');
+if(!id){box.classList.add('hidden');box.innerHTML='';return}
+let tr=getTravelers().find(t=>t.id===id);
+if(!tr){box.classList.add('hidden');box.innerHTML='';return}
+box.classList.remove('hidden');
+box.innerHTML='<b>Selected Traveler:</b> '+tr.name+'<br><b>Route:</b> '+(tr.departure||'-')+' → '+(tr.arrival||'-')+'<br><b>Remaining Space:</b> '+tr.weight+' lbs<br><button class="btn-secondary" onclick="localStorage.removeItem(\'selectedTravelerId\');renderSelectedTraveler();">Change Traveler</button>';
+}
+function renderTravelers(){
+let user=getCurrentUser();
+let travelersSection=document.getElementById('travelers');
+if(user && getRole(user)==='traveler'){
+  travelersSection.classList.add('hidden');
+  availableTravelersList.innerHTML='';
+  return;
+}
+travelersSection.classList.remove('hidden');
+availableTravelersList.innerHTML='';
+let travelers=getTravelers();
+if(!travelers.length){availableTravelersList.innerHTML='<p class="small">No travelers registered yet.</p>';return}
+travelers.forEach(tr=>{let full=Number(tr.weight)<=0;availableTravelersList.innerHTML+=`<div class="item"><b>${tr.name}</b> <span class="badge">${tr.destination}</span><br>Phone: ${tr.phone}<br>Date: ${tr.date||'-'}<br>Airline: ${tr.airline||'-'}<br>Route: ${tr.departure||'-'} → ${tr.arrival||'-'}<br>Original Capacity: ${tr.originalWeight} lbs<br>Remaining Space: ${tr.weight} lbs<br>${full?'<span class="badge badge-warn">Full</span>':`<button onclick="pickTraveler('${tr.id}')">Pick This Traveler</button>`}</div>`})}
+
+function showSenderDashboard(){
+  let u=getCurrentUser();
+  if(!u){alert('Please log in first.');scrollToId('account');return}
+  let role=getRole(u);
+  if(!(role==='sender'||role==='both'||role==='admin')){alert('Access denied. This is for senders.');return}
+  let senderBox=document.getElementById('senderDashboard');
+  let travelerBox=document.getElementById('travelerDashboard');
+  let shipments=getShipments().filter(s=>s.owner===u.email);
+  travelerBox.classList.add('hidden');
+  senderBox.classList.remove('hidden');
+  senderBox.innerHTML=`<h3>${t('senderDash')}</h3>
+    <div class="grid">
+      <div class="stat"><span>${t('totalShipments')}</span><strong>${shipments.length}</strong></div>
+      <div class="stat"><span>${t('paidShipments')}</span><strong>${shipments.filter(s=>s.paymentStatus==='Paid').length}</strong></div>
+      <div class="stat"><span>Pending Payments</span><strong>${shipments.filter(s=>s.paymentStatus!=='Paid').length}</strong></div>
+    </div>
+    <button onclick="scrollToId('sendPackage')">${t('sendPackage')}</button>
+    <button onclick="scrollToId('myShipments')">${t('myShipments')}</button>`;
+  scrollToId('dashboards');
+}
+
+function showTravelerDashboard(){
+  let u=getCurrentUser();
+  if(!u){alert('Please log in first.');scrollToId('account');return}
+  let role=getRole(u);
+  if(!(role==='traveler'||role==='both'||role==='admin')){alert('Access denied. This is for travelers.');return}
+  let senderBox=document.getElementById('senderDashboard');
+  let travelerBox=document.getElementById('travelerDashboard');
+  let trips=getTravelers().filter(tr=>tr.owner===u.email||role==='admin');
+  let pending=getShipments().filter(s=>trips.some(tr=>tr.id===s.travelerId)&&s.status==='Pending Traveler Approval');
+  let accepted=getShipments().filter(s=>trips.some(tr=>tr.id===s.travelerId)&&s.status!=='Pending Traveler Approval'&&s.status!=='Declined by Traveler');
+  let commission=accepted.reduce((sum,s)=>sum+calculateTravelerCommission(s.weight),0);
+  senderBox.classList.add('hidden');
+  travelerBox.classList.remove('hidden');
+  travelerBox.innerHTML=`<h3>${t('travelerDash')}</h3>
+    <div class="grid">
+      <div class="stat"><span>Trips</span><strong>${trips.length}</strong></div>
+      <div class="stat"><span>Pending Requests</span><strong>${pending.length}</strong></div>
+      <div class="stat"><span>Accepted Packages</span><strong>${accepted.length}</strong></div>
+      <div class="stat"><span>Available Weight</span><strong>${trips.reduce((a,tr)=>a+Number(tr.weight||0),0)} lbs</strong></div>
+      <div class="stat"><span>${t('travelerCommission')}</span><strong>$${money(commission)}</strong></div>
+    </div>
+    <button onclick="scrollToId('travelerRegister')">${t('travelerRegistration')}</button>
+    <h4>My Active Trip(s)</h4>${trips.map(tr=>travelerTripCard(tr)).join('')||'<p class="small">No active trip registered yet. Use Traveler Registration to add your trip.</p>'}
+    <h4>Pending Package Requests</h4>${pending.map(s=>requestCard(s)).join('')||'<p class="small">No pending package requests.</p>'}
+    <h4>Accepted Packages</h4>${accepted.map(s=>travelerAcceptedCard(s)).join('')||'<p class="small">No accepted packages yet.</p>'}`;
+  scrollToId('dashboards');
+}
+function requestCard(s){return `<div class="item"><b>Tracking:</b> ${s.trackingNumber}<br><b>Sender:</b> ${s.sender}<br><b>Receiver:</b> ${s.receiver}<br><b>Destination:</b> ${s.city}<br><b>Package:</b> ${s.description}<br><b>Weight:</b> ${s.weight} lbs<br><b>${t('travelerCommission')}:</b> $${money(calculateTravelerCommission(s.weight))}<br><span class="badge badge-warn">Pending Traveler Approval</span><br><button onclick="acceptShipment('${s.trackingNumber}')">✅ Accept</button><button class="btn-danger" onclick="declineShipment('${s.trackingNumber}')">❌ Decline</button></div>`}
+function travelerTripCard(tr){return `<div class="item"><b>Route:</b> ${tr.destination}<br><b>Date:</b> ${tr.date||'-'}<br><b>Airline:</b> ${tr.airline||'-'}<br><b>Departure:</b> ${tr.departure||'-'}<br><b>Arrival:</b> ${tr.arrival||'-'}<br><b>Original Capacity:</b> ${tr.originalWeight} lbs<br><b>Remaining Space:</b> ${tr.weight} lbs<br><span class="badge">Active Trip</span></div>`}
+
+function travelerAcceptedCard(s){return `<div class="item"><b>Tracking:</b> ${s.trackingNumber}<br><b>Sender:</b> ${s.sender}<br><b>Sender Phone:</b> ${s.senderPhone || '-'}<br><b>Receiver:</b> ${s.receiver}<br><b>Receiver Phone:</b> ${s.receiverPhone || '-'}<br><b>Traveler:</b> ${s.traveler}<br><b>Destination:</b> ${s.city}<br><b>Package:</b> ${s.description}<br><b>Weight:</b> ${s.weight} lbs<br><b>${t('travelerCommission')}:</b> $${money(calculateTravelerCommission(s.weight))}<br><b>Payment:</b> <span class="badge ${s.paymentStatus==='Paid'?'badge-paid':'badge-warn'}">${s.paymentStatus}</span><br><b>Status:</b> ${s.status}<br><b>Date:</b> ${s.date}</div>`}
+function acceptShipment(n){
+let shipments=getShipments();let travelers=getTravelers();let s=shipments.find(x=>x.trackingNumber===n);if(!s){alert('Shipment not found.');return}
+let tr=travelers.find(t=>t.id===s.travelerId);if(!tr){alert('Traveler trip not found.');return}
+if(Number(tr.weight)<Number(s.weight)){alert('Not enough remaining space.');return}
+tr.weight=Number(tr.weight)-Number(s.weight);
+s.status='Matched with Traveler';
+s.traveler=tr.name;
+s.travelerEmail=tr.owner||'';
+saveTravelers(travelers);saveShipments(shipments);renderAll();showTravelerDashboard();alert('Request accepted. Remaining space: '+tr.weight+' lbs');
+}
+function declineShipment(n){
+let shipments=getShipments();let s=shipments.find(x=>x.trackingNumber===n);if(!s){alert('Shipment not found.');return}
+s.status='Declined by Traveler';
+saveShipments(shipments);renderAll();showTravelerDashboard();alert('Request declined. Space was not deducted.');
+}
+function trackPackage(){let n=trackingInput.value.trim();let s=getShipments().find(x=>x.trackingNumber===n);if(!s){alert('Tracking number not found.');return}let statuses=['Pending Traveler Approval','Matched with Traveler','Picked Up','In Transit','Arrived in Addis Ababa','Delivered'];let idx=statuses.indexOf(s.status);let progress='✓ Package Submitted\n';statuses.forEach((st,i)=>progress+=(i<=idx?'✓ ':'⬜ ')+st+'\n');alert(`Tracking Number: ${s.trackingNumber}\nSender: ${s.sender}\nReceiver: ${s.receiver}\nDestination: ${s.city}\nPackage: ${s.description}\nWeight: ${s.weight} lb\nPayment: ${s.paymentStatus}\nStatus: ${s.status}\n\nDelivery Progress\n${progress}`)}
+function printReceipt(n){let s=getShipments().find(x=>x.trackingNumber===n);if(!s){alert('Receipt not found.');return}let w=window.open('','_blank');w.document.write(`<html><head><title>Receipt</title><style>body{font-family:Arial;padding:30px}.receipt{max-width:680px;margin:auto;border:1px solid #ccc;padding:25px}h1{text-align:center;color:#087b36}.sig{margin-top:35px;border-top:1px solid #000;width:260px}</style></head><body><div class="receipt"><h1>ET Ethiopian Shipping Business Inc.</h1><h2>Shipping Receipt</h2><p><b>Tracking Number:</b> ${s.trackingNumber}</p><p><b>Sender:</b> ${s.sender}</p><p><b>Receiver:</b> ${s.receiver}</p><p><b>Traveler:</b> ${s.traveler}</p><p><b>Destination:</b> ${s.city}</p><p><b>Package:</b> ${s.description}</p><p><b>Weight:</b> ${s.weight} lbs</p><p><b>Price:</b> $${money(s.price)}</p><p><b>Payment Status:</b> ${s.paymentStatus}</p><p><b>Status:</b> ${s.status}</p><p><b>Date:</b> ${s.date}</p><hr><p>Thank you for using ET Ethiopian Shipping Business Inc.</p><p class="sig">Customer Signature</p><p class="sig">Company Signature</p></div></body></html>`);w.document.close();w.print()}
+function payShipment(n){let shipments=getShipments();let s=shipments.find(x=>x.trackingNumber===n);if(!s){alert('Shipment not found.');return}if(confirm('Demo Payment\nAmount: $'+money(s.price)+'\nClick OK to mark paid.')){s.paymentStatus='Paid';saveShipments(shipments);renderAll();alert('Payment marked as Paid.')}}
+function showAdminDashboard(){let u=getCurrentUser();if(!u||u.email!==ADMIN_EMAIL){alert('Access Denied!');return}let users=getUsers(),travelers=getTravelers(),shipments=getShipments();adminStats.innerHTML=`<div class="stat"><span>${t('totalUsers')}</span><strong>${users.length}</strong></div><div class="stat"><span>${t('totalTravelers')}</span><strong>${travelers.length}</strong></div><div class="stat"><span>${t('totalShipments')}</span><strong>${shipments.length}</strong></div><div class="stat"><span>${t('paidShipments')}</span><strong>${shipments.filter(s=>s.paymentStatus==='Paid').length}</strong></div><div class="stat"><span>${t('totalRevenue')}</span><strong>$${money(shipments.filter(s=>s.paymentStatus==='Paid').reduce((a,s)=>a+Number(s.price||0),0))}</strong></div>`;usersList.innerHTML=users.map(user=>`<div class="item"><b>${user.name}</b> <span class="badge">${roleText(user.role)}</span><br>${user.phone}<br>${user.email}<br><button class="btn-danger" onclick="deleteUser('${user.email}')">${t('delete')}</button></div>`).join('')||'<p class="small">No users.</p>';adminTravelersList.innerHTML=travelers.map(tr=>`<div class="item"><b>${tr.name}</b><br>${tr.destination}<br>${tr.weight} lbs remaining<br><button class="btn-danger" onclick="deleteTraveler('${tr.id}')">${t('delete')}</button></div>`).join('')||'<p class="small">No travelers.</p>';adminShipmentsList.innerHTML=shipments.map(s=>`<div class="item"><b>${s.trackingNumber}</b><br>${s.sender} → ${s.receiver}<br>${s.status}<br>Payment: ${s.paymentStatus} | $${money(s.price)}<br><button onclick="updateShipmentStatus('${s.trackingNumber}','Picked Up')">📦 ${t('pickedUp')}</button><button onclick="updateShipmentStatus('${s.trackingNumber}','In Transit')">✈️ ${t('inTransit')}</button><button onclick="updateShipmentStatus('${s.trackingNumber}','Arrived in Addis Ababa')">🇪🇹 ${t('arrived')}</button><button onclick="updateShipmentStatus('${s.trackingNumber}','Delivered')">✅ ${t('delivered')}</button><button onclick="printReceipt('${s.trackingNumber}')">🧾 ${t('printReceipt')}</button><button class="btn-pay" onclick="payShipment('${s.trackingNumber}')">💳 ${t('markPaid')}</button><button class="btn-danger" onclick="deleteShipment('${s.trackingNumber}')">${t('delete')}</button></div>`).join('')||'<p class="small">No shipments.</p>';scrollToId('admin')}
+function updateShipmentStatus(n,status){let shipments=getShipments();let s=shipments.find(x=>x.trackingNumber===n);if(s){s.status=status;saveShipments(shipments);renderAll();showAdminDashboard();alert('Shipment updated.')}}
+function deleteUser(email){if(confirm('Delete this user?')){saveUsers(getUsers().filter(u=>u.email!==email));renderAll();showAdminDashboard()}}
+function deleteTraveler(id){if(confirm('Delete this traveler?')){saveTravelers(getTravelers().filter(t=>t.id!==id));renderAll();showAdminDashboard()}}
+function deleteShipment(n){if(confirm('Delete this shipment?')){saveShipments(getShipments().filter(s=>s.trackingNumber!==n));renderAll();showAdminDashboard()}}
+function clearAllTestData(){let u=getCurrentUser();if(!u||u.email!==ADMIN_EMAIL){alert('Access Denied!');return}if(confirm('Clear users, travelers, and shipments?')){localStorage.removeItem('users');localStorage.removeItem('travelers');localStorage.removeItem('shipments');localStorage.removeItem('currentUser');renderAll();alert('All test data cleared.')}}
+
+function appSnapshot(){return {exportedAt:new Date().toISOString(),users:getUsers(),travelers:getTravelers(),shipments:getShipments()}}
+function exportBackup(){let data=JSON.stringify(appSnapshot(),null,2);let blob=new Blob([data],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='et-shipping-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
+function importBackup(event){let file=event.target.files&&event.target.files[0];if(!file)return;let reader=new FileReader();reader.onload=()=>{try{let data=JSON.parse(reader.result);if(data.users)saveUsers(data.users);if(data.travelers)saveTravelers(data.travelers);if(data.shipments)saveShipments(data.shipments);renderAll();alert('Backup imported successfully.')}catch(e){alert('Invalid backup file.')}};reader.readAsText(file)}
+function seedDemoData(){if(!confirm('Create sample users, traveler trip, and shipment for testing?'))return;let users=getUsers();let demoUsers=[{name:'Demo Sender',phone:'4045551111',email:'sender@demo.com',password:'demo123',role:'sender',status:'Active User'},{name:'Demo Traveler',phone:'4045552222',email:'traveler@demo.com',password:'demo123',role:'traveler',status:'Active User'}];demoUsers.forEach(u=>{if(!users.some(x=>x.email===u.email))users.push(u)});saveUsers(users);let travelers=getTravelers();let trip={id:'TRV-DEMO-1',name:'Demo Traveler',phone:'4045552222',destination:'Atlanta → Addis Ababa',date:new Date(Date.now()+7*86400000).toISOString().slice(0,10),airline:'Ethiopian Airlines',departure:'Atlanta',arrival:'Addis Ababa',weight:50,originalWeight:50,owner:'traveler@demo.com'};if(!travelers.some(t=>t.id===trip.id))travelers.push(trip);saveTravelers(travelers);let shipments=getShipments();let shipment={trackingNumber:'ETDEMO1001',sender:'Demo Sender',senderPhone:'4045551111',receiver:'Demo Receiver',receiverPhone:'251911000000',city:'Addis Ababa',weight:25,description:'Clothes',price:225,paymentStatus:'Unpaid',status:'Pending Traveler Approval',traveler:'Demo Traveler',travelerId:'TRV-DEMO-1',date:new Date().toLocaleDateString(),owner:'sender@demo.com'};if(!shipments.some(s=>s.trackingNumber===shipment.trackingNumber))shipments.push(shipment);saveShipments(shipments);renderAll();alert('Demo data created. Login with sender@demo.com or traveler@demo.com, password demo123.')}
+function renderAll(){showProfile();renderShipments();renderTravelers();renderSelectedTraveler();}
+window.addEventListener('load',()=>{setLanguage(localStorage.getItem('language')||'en');renderAll();});
+</script>
+</body>
+</html>

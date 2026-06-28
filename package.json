@@ -1,0 +1,14 @@
+{
+  "name": "ethiopian-shipping-app",
+  "version": "5.5.0",
+  "private": true,
+  "description": "Community shipping prototype for sender, traveler, admin, payment and tracking workflows.",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve .",
+    "test": "node tests/smoke-test.js"
+  },
+  "devDependencies": {
+    "serve": "latest"
+  }
+}

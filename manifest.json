@@ -1,0 +1,9 @@
+{
+  "name": "ET Ethiopian Shipping Business Inc.",
+  "short_name": "ET Shipping",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f5f7f4",
+  "theme_color": "#087b36",
+  "icons": []
+}
